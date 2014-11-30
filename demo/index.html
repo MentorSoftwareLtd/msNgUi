@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html ng-app="ms.NgUi.demo">
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="Miroslaw Dylag.">
+    <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.min.css" media="screen">
+    <!--Font awesome -->
+    <link rel="stylesheet" href="../node_modules/font-awesome/css/font-awesome.min.css">
+    <!-- msNgTree -->
+    <link rel="stylesheet" href="msNgUi.css">
+
+
+    <title></title>
+</head>
+<body ng-controller="DemoController">
+
+<!--<div class="span5 article-tree">
+    <div ng-style="{'overflow': 'auto'}">
+<div class="tree">
+    <ul node-tr ng-model="displayTree" data-folder-type="directory" data-on-select="selectNode()">
+        <!--<node-tr ng-model="displayTree" data-folder-type="directory" data-on-select="selectNode()"></node-tr>
+    </ul>
+</div>
+        </div>
+    </div>
+</div>-->
+
+<table class="table table-bordered" tree-grid ng-model="displayTree">
+    <thead>
+        <th>Name</th>
+        <th>Number of children</th>
+        <th>Size</th>
+    </thead>
+</table>
+
+<script src="../node_modules/angular/angular.js"></script>
+<script src="../dist/template.js"></script>
+<script src="../src/msNgHeader.js"></script>
+<script src="../src/msNgTree.js"></script>
+<script src="../src/msNgTreeGrid.js"></script>
+
+<script src="demo.js"></script>
+
+</body>
+</html>
