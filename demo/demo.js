@@ -23,12 +23,24 @@ angular.module('ms.NgTest',[]).directive('msNgTreeGrid1',
 
 
 
-var app=angular.module('ms.NgUi.demo', ['ms.NgUi.tpl','ms.NgTest','ms.NgUi.tree','ms.NgUi.treeGrid'], function(){
+var app=angular.module('ms.NgUi.demo', ['ms.NgUi.tpl','ms.NgTest','ms.NgUi','angularTree'], function(){
     console.log('Loaded');
 });
 
 
 app.controller('DemoController',function($scope){
+    $scope.model = [
+        {
+            name: 'Item 1 Name',
+            children: [
+                {
+                    name: 'Item 2 Name'
+                }, {
+                    name: 'Item 3 Name'
+                }
+            ]
+        }
+    ];
     $scope.displayTree =
         [{
             "name": "Root",

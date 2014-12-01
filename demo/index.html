@@ -17,31 +17,25 @@
 </head>
 <body ng-controller="DemoController">
 
-<!--<div class="span5 article-tree">
-    <div ng-style="{'overflow': 'auto'}">
-<div class="tree">
-    <ul node-tr ng-model="displayTree" data-folder-type="directory" data-on-select="selectNode()">
-        <!--<node-tr ng-model="displayTree" data-folder-type="directory" data-on-select="selectNode()"></node-tr>
-    </ul>
-</div>
+<ul tree2="model" ng-model="displayTree">
+    <li><span>{{item.name}}</span></li>
+</ul>
+
+<div class="span5 article-tree">
+        <div ng-style="{'overflow': 'auto'}">
+            <div class="tree">
+                <ul ms-tree ng-model="displayTree" data-folder-type="directory" data-on-select="selectNode()">
+                </ul>
+            </div>
         </div>
     </div>
-</div>-->
+</div>
 
-<table class="table table-bordered" tree-grid ng-model="displayTree">
-    <thead>
-        <th>Name</th>
-        <th>Number of children</th>
-        <th>Size</th>
-    </thead>
-</table>
 
 <script src="../node_modules/angular/angular.js"></script>
 <script src="../dist/template.js"></script>
-<script src="../src/msNgHeader.js"></script>
-<script src="../src/msNgTree.js"></script>
-<script src="../src/msNgTreeGrid.js"></script>
-
+<script src="../dist/MsNgUi.js"></script>
+<script src="../bower_modules/angular-tree/angular.tree.js"></script>
 <script src="demo.js"></script>
 
 </body>

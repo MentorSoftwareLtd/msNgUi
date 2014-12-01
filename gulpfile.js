@@ -16,4 +16,4 @@ var requireDir = require('require-dir');
 var dir = requireDir('./tasks');
 
 
-gulp.task('default', ['test', 'less','html2js']);
+gulp.task('default', ['test', 'less','html2js','scriptsDist']);

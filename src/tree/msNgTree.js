@@ -1,5 +1,5 @@
 angular.module('ms.NgUi.tree',[])
-    .directive('nodeTr', function() {
+    .directive('msTree', function() {
     return {
         template: '<node ng-repeat="node in tree"></node>',
         replace: true,
@@ -18,7 +18,7 @@ angular.module('ms.NgUi.tree',[])
     return {
         restrict: 'E',
         replace: true,
-        templateUrl: 'templates/msng/tree.html',
+        templateUrl: 'templates/msng/tree.tpl.html',
 
         link: function(scope, elm, attrs, controller) {
             var options = {};
@@ -81,7 +81,7 @@ angular.module('ms.NgUi.tree',[])
                         childNodeAttr=' data-file-type="' + attrs.fileType + '"';
                     }
 
-                    var childNode = $compile('<ul><node-tr ng-model="node.nodes"' + childNodeAttr+'></node-tr></ul>')(scope)
+                    var childNode = $compile('<ul><ms-tree ng-model="node.nodes"' + childNodeAttr+'></ms-tree></ul>')(scope)
                     elm.append(childNode);
             }
         }
