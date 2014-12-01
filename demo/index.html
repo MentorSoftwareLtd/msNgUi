@@ -11,30 +11,43 @@
     <link rel="stylesheet" href="../node_modules/font-awesome/css/font-awesome.min.css">
     <!-- msNgTree -->
     <link rel="stylesheet" href="msNgUi.css">
+    <style>
 
+    </style>
 
     <title></title>
 </head>
 <body ng-controller="DemoController">
 
-<ul tree2="model" ng-model="displayTree">
-    <li><span>{{item.name}}</span></li>
-</ul>
-
+<p>Example of using font-awesome</p>
+<code>dsdsdsda </code>
 <div class="span5 article-tree">
+    <div ng-style="{'overflow': 'auto'}">
+        <div class="tree">
+            <ul ms-tree ng-model="displayTree" data-folder-type="directory" data-on-select="selectNode()"
+                data-class-expanded="fa fa-fw fa-folder-open"
+                data-class-collapsed="fa fa-fw fa-folder"
+                data-class-file="fa fa-fw fa-file">
+
+            </ul>
+        </div>
+    </div>
+</div>
+
+<!--div class="span5 article-tree">
         <div ng-style="{'overflow': 'auto'}">
             <div class="tree">
                 <ul ms-tree ng-model="displayTree" data-folder-type="directory" data-on-select="selectNode()">
                 </ul>
             </div>
         </div>
-    </div>
-</div>
+</div>-->
+
 
 
 <script src="../node_modules/angular/angular.js"></script>
-<script src="../dist/template.js"></script>
-<script src="../dist/MsNgUi.js"></script>
+<script src="../dist/msngui.min.js"></script>
+<script src="../dist/msngui.tpl.min.js"></script>
 <script src="../bower_modules/angular-tree/angular.tree.js"></script>
 <script src="demo.js"></script>
 

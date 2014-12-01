@@ -1,9 +1,11 @@
 <li class="parent_li">
     <span class="leaf" ng-click="nodeClicked(node);select(node);">
-        <i class="fa fa-fw fa-folder-open" ng-show="isFolder(node) && isExpanded(node) && hasChildren(node)"></i>
-        <i class="fa fa-fw fa-folder" ng-show="isFolder(node) && (!isExpanded(node) || !hasChildren(node))"></i>
-        <i class="fa fa-fw fa-file" ng-show="isFile(node)"></i>
-            {{node.name}}
+       <!-- <span ng-if="!isClassExpanded()" ng-show="isFolder(node) && isExpanded(node) && hasChildren(node)"> - </span>
+        <span ng-if="!isClassCollapsed()" ng-show="isFolder(node) && !isExpanded(node) && hasChildren(node) && !isClassCollapsed()"> + </span>
+    -->
+        <span ng-class="getClassExpanded()" ng-show="isFolder(node) && isExpanded(node) && hasChildren(node)"></span>
+        <span class="fa fa-fw fa-folder" ng-show="isFolder(node) && (!isExpanded(node) || !hasChildren(node))"></span>
+        <span class="fa fa-fw fa-file" ng-show="isFile(node)"></span>
+        <span>{{node.name}}</span>
     </span>
 </li>
-                      
