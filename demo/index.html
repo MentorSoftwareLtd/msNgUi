@@ -18,16 +18,32 @@
     <title></title>
 </head>
 <body ng-controller="DemoController">
+<style>
+    li > span {
+        cursor: pointer;
+    }
+</style>
+<p>Simple example</p>
+<div class="span5">
+    <div ng-style="{'overflow': 'auto'}">
+        <div>
+            <ul ms-tree ng-model="displayTree" data-folder-type="directory" data-on-select="selectNode()">
+            </ul>
+        </div>
+    </div>
+</div>
 
-<p>Example of using font-awesome</p>
-<code>dsdsdsda </code>
+
+<p>Example of using font-awesome and custom css</p>
 <div class="span5 article-tree">
     <div ng-style="{'overflow': 'auto'}">
         <div class="tree">
             <ul ms-tree ng-model="displayTree" data-folder-type="directory" data-on-select="selectNode()"
                 data-class-expanded="fa fa-fw fa-folder-open"
                 data-class-collapsed="fa fa-fw fa-folder"
-                data-class-file="fa fa-fw fa-file">
+                data-class-file="fa fa-fw fa-file"
+                data-class-parent="parent_li"
+                data-class-leaf="leaf">
 
             </ul>
         </div>

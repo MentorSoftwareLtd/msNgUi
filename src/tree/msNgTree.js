@@ -13,6 +13,8 @@ angular.module('ms.NgUi.tree',[])
                 classExpanded:  "@",
                 classCollapsed:  "@",
                 classFile: "@",
+                classParent: "@",
+                classLeaf: "@",
                 select : "&onSelect"
             }
         };
@@ -27,7 +29,12 @@ angular.module('ms.NgUi.tree',[])
                 var options = {};
                 options.folderType = attrs.folderType || "folder" ;
                 options.fileType = attrs.fileType || "file" ;
-                console.log("node", attrs, scope.classCollapsed, scope.$parent.classCollapsed);
+                console.log("node", attrs, scope.$parent.classCollapsed);
+                scope.classCollapsed=scope.$parent.classCollapsed;
+                scope.classFile=scope.$parent.classFile;
+                scope.classExpanded=scope.$parent.classExpanded;
+                scope.classParent=scope.$parent.classParent;
+                scope.classLeaf=scope.$parent.classLeaf;
 
                 scope.expanded=true;
                 elm.on('click', function(e) {
@@ -111,6 +118,14 @@ angular.module('ms.NgUi.tree',[])
                     if (angular.isDefined(attrs.classFile)) {
 
                         childNodeAttr+=' data-class-file="' + attrs.classFile + '"';
+                    }
+                    if (angular.isDefined(attrs.classParent)) {
+
+                        childNodeAttr+=' data-class-parent="' + attrs.classParent + '"';
+                    }
+                    if (angular.isDefined(attrs.classLeaf)) {
+
+                        childNodeAttr+=' data-class-leaf="' + attrs.classLeaf + '"';
                     }
 
                     var childNode = $compile('<ul><ms-tree ng-model="node.nodes"' + childNodeAttr+'></ms-tree></ul>')(scope)
