@@ -18,12 +18,14 @@
     <title></title>
 </head>
 <body ng-controller="DemoController">
+
+<p>Simple example</p>
 <style>
     li > span {
         cursor: pointer;
     }
 </style>
-<p>Simple example</p>
+<span class="fa fa-folder fa-fw"></span>
 <div class="span5">
     <div ng-style="{'overflow': 'auto'}">
         <div>
@@ -62,9 +64,12 @@
 
 
 <script src="../node_modules/angular/angular.js"></script>
-<script src="../dist/msngui.min.js"></script>
+<script src="../src/tree/msNgTree.js"></script>
+<script src="../src/treeGrid/msNgTreeGrid.js"></script>
 <script src="../dist/msngui.tpl.min.js"></script>
-<script src="../bower_modules/angular-tree/angular.tree.js"></script>
+<script src="../src/module.js"></script>
+
+<!--<script src="../dist/msngui.min.js"></script>-->
 <script src="demo.js"></script>
 
 </body>

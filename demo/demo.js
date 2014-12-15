@@ -23,7 +23,7 @@ angular.module('ms.NgTest',[]).directive('msNgTreeGrid1',
 
 
 
-var app=angular.module('ms.NgUi.demo', ['ms.NgTest','ms.NgUi','angularTree'], function(){
+var app=angular.module('ms.NgUi.demo', ['ms.NgTest','ms.NgUi'], function(){
     console.log('Loaded');
 });
 

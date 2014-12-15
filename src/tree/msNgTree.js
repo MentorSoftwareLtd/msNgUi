@@ -29,14 +29,14 @@ angular.module('ms.NgUi.tree',[])
                 var options = {};
                 options.folderType = attrs.folderType || "folder" ;
                 options.fileType = attrs.fileType || "file" ;
-                console.log("node", attrs, scope.$parent.classCollapsed);
                 scope.classCollapsed=scope.$parent.classCollapsed;
                 scope.classFile=scope.$parent.classFile;
                 scope.classExpanded=scope.$parent.classExpanded;
                 scope.classParent=scope.$parent.classParent;
                 scope.classLeaf=scope.$parent.classLeaf;
 
-                scope.expanded=true;
+                scope.expanded = true;
+
                 elm.on('click', function(e) {
                     var children = elm.find('li');
                     children.toggleClass('ng-hide');
@@ -65,7 +65,6 @@ angular.module('ms.NgUi.tree',[])
                     return node.type == options.fileType;
                 }
                 scope.isExpanded = function(node) {
-
                     return scope.expanded;
                 }
                 scope.hasChildren = function(node) {
@@ -85,7 +84,7 @@ angular.module('ms.NgUi.tree',[])
                     return attrs.classExpanded;
                 }
                 scope.getClassCollapsed = function() {
-                    return attrs.classFile;
+                    return attrs.classCollapsed;
                 }
                 scope.getClassFile = function() {
                     return attrs.classFile;
@@ -108,11 +107,11 @@ angular.module('ms.NgUi.tree',[])
                         childNodeAttr+=' data-file-type="' + attrs.fileType + '"';
                     }
                     if (angular.isDefined(attrs.classExpanded)) {
-                        console.log('expanded');
+
                         childNodeAttr+=' data-class-expanded="' + attrs.classExpanded + '"';
                     }
                     if (angular.isDefined(attrs.classCollapsed)) {
-                        console.log('expanded');
+
                         childNodeAttr+=' data-class-collapsed="' + attrs.classCollapsed + '"';
                     }
                     if (angular.isDefined(attrs.classFile)) {
