@@ -1,7 +1,7 @@
 {
-  "name": "msNgUi",
+  "name": "MentorSoftwareLtd/msNgUi",
   "main": "index.js",
-  "version": "0.0.1",
+  "version": "0.0.3",
   "authors": [
     "Miroslaw Dylag <miroslaw.dylag@mentorsoftwareltd.com>"
   ],
