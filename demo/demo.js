@@ -57,8 +57,8 @@ app.controller('DemoController',function($scope){
 
             }];
 
-    $scope.select = function(node) {
-        console.log('Controller click', node);
+    $scope.selectNode = function(node) {
+        console.log('Node selected', node);
     }
 });
 

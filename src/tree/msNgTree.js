@@ -1,7 +1,24 @@
 angular.module('ms.NgUi.tree',[])
+    .service('msTreeService',function() {
+        console.log('msTreeService');
+        var selectedElement;
+        var msTreeService={};
+        msTreeService.select = function(element) {
+            if (selectedElement) {
+                selectedElement.removeClass('selected');
+            }
+            selectedElement=element;
+            selectedElement.addClass('selected');
+        }
+        return msTreeService;
+    })
+    .directive('msTree1', function() {
+
+    })
     .directive('msTree', function() {
+
         return {
-            template: '<node ng-repeat="node in tree"></node>',
+            template: '<tree-node-element ng-repeat="node in tree"></tree-node-element>',
             replace: true,
             transclude: true,
             restrict: 'EA',
@@ -15,11 +32,12 @@ angular.module('ms.NgUi.tree',[])
                 classFile: "@",
                 classParent: "@",
                 classLeaf: "@",
-                select : "&onSelect"
+                select : "&onSelect",
+                children : "="
             }
         };
     }).factory(
-).directive('node', function($compile) {
+).directive('treeNodeElement', function($compile, msTreeService) {
         return {
             restrict: 'E',
             replace: true,
@@ -27,25 +45,51 @@ angular.module('ms.NgUi.tree',[])
 
             link: function(scope, elm, attrs, controller) {
                 var options = {};
+
                 options.folderType = attrs.folderType || "folder" ;
                 options.fileType = attrs.fileType || "file" ;
+                options.onSelect=attrs.onSelect;
                 scope.classCollapsed=scope.$parent.classCollapsed;
                 scope.classFile=scope.$parent.classFile;
                 scope.classExpanded=scope.$parent.classExpanded;
                 scope.classParent=scope.$parent.classParent;
                 scope.classLeaf=scope.$parent.classLeaf;
-
                 scope.expanded = true;
+                var parentEl="";
+                function deselectTree(elm) {
+                    var parent = elm.parent();
+                    if (parent[0].tagName=="UL" || parent[0].tagName=="LI") {
+                        parent.children('span').removeClass('selected');
+                        console.log(parent.children('span'));
+                        parentEl=parent;
+                        deselectTree(parent);
+                    }
+                    else {
+                    }
 
+                }
                 elm.on('click', function(e) {
                     var children = elm.find('li');
-                    children.toggleClass('ng-hide');
+                    if (children) {
+                        children.toggleClass('ng-hide');
+                    }
+                    //var el=deselectTree(elm);
+                    var elemLeaf=elm.find('span');
+                    msTreeService.select(elemLeaf);
                     e.stopPropagation();
+                    //elemLeaf.toggleClass('selected');
                 })
 
                 scope.nodeClicked = function(node) {
 
                     scope.expanded=!scope.expanded;
+                    if (node.type==options.fileType) {
+                        console.log('Node clicked', node, options,scope[options.onSelect]);
+                        if (angular.isDefined(scope[options.onSelect])) {
+                            scope[options.onSelect](node);
+                        }
+
+                    }
 
                     function toggleChildren(child) {
                         angular.forEach(child.nodes, function(child) {
@@ -100,6 +144,10 @@ angular.module('ms.NgUi.tree',[])
 
                 if (scope.node && scope.node.nodes &&  scope.node.nodes.length > 0) {
                     var childNodeAttr="";
+                    if (angular.isDefined(options.onSelect)) {
+                        childNodeAttr+=' data-on-select="' + options.onSelect + '"';
+                    }
+
                     if (angular.isDefined(attrs.folderType)) {
                         childNodeAttr+=' data-folder-type="' + attrs.folderType + '"';
                     }

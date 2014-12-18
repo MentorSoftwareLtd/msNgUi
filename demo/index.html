@@ -40,15 +40,31 @@
 <div class="span5 article-tree">
     <div ng-style="{'overflow': 'auto'}">
         <div class="tree">
-            <ul ms-tree ng-model="displayTree" data-folder-type="directory" data-on-select="selectNode()"
+            <ul ms-tree ng-model="displayTree"
+                data-file-type="file"
+                data-folder-type="directory" data-on-select="selectNode"
                 data-class-expanded="fa fa-fw fa-folder-open"
                 data-class-collapsed="fa fa-fw fa-folder"
                 data-class-file="fa fa-fw fa-file"
                 data-class-parent="parent_li"
                 data-class-leaf="leaf">
-
             </ul>
         </div>
+    </div>
+</div>
+<p>Another example</p>
+<div ng-style="{'overflow': 'auto'}">
+    <div class="tree2">
+        <ul ms-tree ng-model="displayTree"
+            data-file-type="file"
+            data-folder-type="directory"
+            data-on-select="selectNode()"
+            data-class-expanded="fa fa-fw fa-folder-open"
+            data-class-collapsed="fa fa-fw fa-folder"
+            data-class-file="fa fa-fw fa-file"
+            data-class-parent="parent_li"
+            data-class-leaf="leaf">
+        </ul>
     </div>
 </div>
 
