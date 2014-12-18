@@ -1,6 +1,6 @@
 /**
  * msngui
- * @version v0.0.3 - 2014-12-17
+ * @version v0.0.3 - 2014-12-18
  * @link https://github.com/MentorSoftwareLtd/msNgUi
  * @author Miroslaw Dylag (miroslaw.dylag@mentorsoftwareltd.com)
  * @license MIT License, http://www.opensource.org/licenses/MIT

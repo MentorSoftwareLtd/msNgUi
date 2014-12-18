@@ -26,7 +26,7 @@
     }
 </style>
 <span class="fa fa-folder fa-fw"></span>
-<div class="span5">
+<!--<div class="span5">
     <div ng-style="{'overflow': 'auto'}">
         <div>
             <ul ms-tree ng-model="displayTree" data-folder-type="directory" data-on-select="selectNode()">
@@ -37,7 +37,7 @@
 
 
 <p>Example of using font-awesome and custom css</p>
-<div class="span5 article-tree">
+<!--<div class="span5 article-tree">
     <div ng-style="{'overflow': 'auto'}">
         <div class="tree">
             <ul ms-tree ng-model="displayTree"
@@ -51,11 +51,12 @@
             </ul>
         </div>
     </div>
-</div>
+</div>-->
 <p>Another example</p>
 <div ng-style="{'overflow': 'auto'}">
     <div class="tree2">
         <ul ms-tree ng-model="displayTree"
+            data-tree-id="id1"
             data-file-type="file"
             data-folder-type="directory"
             data-on-select="selectNode()"
@@ -66,6 +67,15 @@
             data-class-leaf="leaf">
         </ul>
     </div>
+</div>
+
+<div ng-style="{'overflow': 'auto'}">
+    <div class="tree2">
+        <ul ms-tree2 ng-model="displayTree">
+
+        </ul>
+    </div>
+
 </div>
 
 <!--div class="span5 article-tree">

@@ -1,6 +1,6 @@
 /**
  * msngui
- * @version v0.0.3 - 2014-12-17
+ * @version v0.0.3 - 2014-12-18
  * @link https://github.com/MentorSoftwareLtd/msNgUi
  * @author Miroslaw Dylag (miroslaw.dylag@mentorsoftwareltd.com)
  * @license MIT License, http://www.opensource.org/licenses/MIT
@@ -8,19 +8,18 @@
 angular.module('ms.NgUi.tree',[])
     .service('msTreeService',function() {
         console.log('msTreeService');
-        var selectedElement;
+        var selectedElement = {};
         var msTreeService={};
-        msTreeService.select = function(element) {
-            if (selectedElement) {
-                selectedElement.removeClass('selected');
+        msTreeService.select = function(element, id) {
+            console.log(id);
+
+            if (selectedElement[id]) {
+                selectedElement[id].removeClass('selected');
             }
-            selectedElement=element;
-            selectedElement.addClass('selected');
+            selectedElement[id]=element;
+            selectedElement[id].addClass('selected');
         }
         return msTreeService;
-    })
-    .directive('msTree1', function() {
-
     })
     .directive('msTree', function() {
 
@@ -30,6 +29,7 @@ angular.module('ms.NgUi.tree',[])
             transclude: true,
             restrict: 'EA',
             scope: {
+                treeId: "=",
                 tree: '=ngModel',
                 folderType:"=",
                 fileType:"=",
@@ -52,10 +52,11 @@ angular.module('ms.NgUi.tree',[])
 
             link: function(scope, elm, attrs, controller) {
                 var options = {};
-
+                console.log(scope, elm, attrs);
                 options.folderType = attrs.folderType || "folder" ;
                 options.fileType = attrs.fileType || "file" ;
                 options.onSelect=attrs.onSelect;
+                options.treeId=attrs.treeId;
                 scope.classCollapsed=scope.$parent.classCollapsed;
                 scope.classFile=scope.$parent.classFile;
                 scope.classExpanded=scope.$parent.classExpanded;
@@ -63,35 +64,25 @@ angular.module('ms.NgUi.tree',[])
                 scope.classLeaf=scope.$parent.classLeaf;
                 scope.expanded = true;
                 var parentEl="";
-                function deselectTree(elm) {
-                    var parent = elm.parent();
-                    if (parent[0].tagName=="UL" || parent[0].tagName=="LI") {
-                        parent.children('span').removeClass('selected');
-                        console.log(parent.children('span'));
-                        parentEl=parent;
-                        deselectTree(parent);
-                    }
-                    else {
-                    }
+                    (function(node) {
+                        elm.on('click', function (e) {
+                            var children = elm.find('li');
+                            if (children) {
+                                children.toggleClass('ng-hide');
+                            }
+                            if (node.type==options.fileType) {
+                                var elemLeaf = elm.find('span');
+                                msTreeService.select(elemLeaf, options.treeId);
+                            }
+                            e.stopPropagation();
+                        });
+                    })(scope.node);
 
-                }
-                elm.on('click', function(e) {
-                    var children = elm.find('li');
-                    if (children) {
-                        children.toggleClass('ng-hide');
-                    }
-                    //var el=deselectTree(elm);
-                    var elemLeaf=elm.find('span');
-                    msTreeService.select(elemLeaf);
-                    e.stopPropagation();
-                    //elemLeaf.toggleClass('selected');
-                })
-
-                scope.nodeClicked = function(node) {
+                scope.nodeClicked = function($event,node) {
+                    console.log(node);
 
                     scope.expanded=!scope.expanded;
                     if (node.type==options.fileType) {
-                        console.log('Node clicked', node, options,scope[options.onSelect]);
                         if (angular.isDefined(scope[options.onSelect])) {
                             scope[options.onSelect](node);
                         }
@@ -153,6 +144,9 @@ angular.module('ms.NgUi.tree',[])
                     var childNodeAttr="";
                     if (angular.isDefined(options.onSelect)) {
                         childNodeAttr+=' data-on-select="' + options.onSelect + '"';
+                    }
+                    if (angular.isDefined(options.treeId)) {
+                        childNodeAttr+=' data-tree-id="' + options.treeId + '"';
                     }
 
                     if (angular.isDefined(attrs.folderType)) {
