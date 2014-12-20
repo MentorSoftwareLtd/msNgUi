@@ -2,13 +2,13 @@ var TreeGridController = (function() {
     var GridController = {};
 })();
 angular.module('ms.NgUi.treeGrid',[])
-    .directive('treeGrid', function() {
-
+    .directive('msTreeGrid', function() {
         return {
             //replace: true,
             restrict: 'A',
             scope: {
-                tree: '=ngModel'
+                model: '=ngModel',
+                fields: '=?'
             },
             controller: ["$scope","$compile", "$parse", "$timeout", "$templateCache", function($scope, $compile, $parse, $timeout, $templateCache) {
                 this.$compile = $compile;
@@ -20,44 +20,33 @@ angular.module('ms.NgUi.treeGrid',[])
                 console.log("Ctrl",this, $scope);
             }],
             template : function(templateElement, tAttrs) {
-                console.log('template', templateElement, tAttrs);
-
-                //Add the default class
-                var theadEl=templateElement.find("thead");
-                if (theadEl)
-                {
-                    angular.forEach(theadEl.children(), function(childEl) {
-
-                        }
-                    );
-                }
-                angular.forEach(templateElement.children(), function (childElement) {
-                    childElement = angular.element(childElement);
-                    //childElement.attr("ng-non-bindable", "");
-                });
+                console.log('template', templateElement.children(), tAttrs);
 
             },
-            compile: function (templateElement, tAttrs) {
-                return {
-                    pre: function (isolatedScope, instanceElement, tAttrs, controller) {
-                        //controller.discoverTemplates(instanceElement);
-                    },
-                    post: function (isolatedScope, instanceElement, tAttrs, controller, transcludeFn) {
-                        console.log('link', controller, isolatedScope);
-                        //instanceElement.append("<tr><td>Ala</td></tr>");
-                        //var gridScope = controller.setupScope(isolatedScope, instanceElement, tAttrs);
-                        //controller.configureTableStructure(gridScope, instanceElement);
-                        //controller.setupDisplayItemsArray(gridScope);
-                    }
-                };
+            link: function (scope, elm, attrs, controller) {
+                console.log("Ctrl 2",controller, attrs);
+                var tBody=angular.element("<tbody></tbody>");
+
+                angular.forEach(scope.fields, function(value,key) {
+                    tBody.append("<th>"+value+"</th>");
+                });
+                elm.append(tBody);
+                angular.forEach(scope.model, function(key,value) {
+                    tBody.append("<tr></tr>");
+                    console.log(value, key);
+
+                });
+
+                //add thead
             }
         };
-    }).directive('treeGridTh', function() {
+    }).directive('treeGridRow', function() {
         return {
-            restrict: 'A',
+            restrict: 'E',
             require: "^treeGrid",
+            template: "<tr></tr>",
             link: function (scope, elm, attrs, controller) {
-                console.log("Ctrl 2",controller);
+                console.log("Treegrid row",scope);
 
             }
         }

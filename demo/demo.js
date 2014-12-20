@@ -1,8 +1,7 @@
 angular.module('ms.NgTest',[]).directive('msNgTreeGrid1',
     function ($compile) {
-
         return {
-            restrict: 'E',
+            restrict: 'A',
             //templateUrl: 'templates/msng/treeGrid.html',
             template: '<div>alaa</div>',
             link: function (scope, element, attrs) {
@@ -13,11 +12,6 @@ angular.module('ms.NgTest',[]).directive('msNgTreeGrid1',
             }]
 
         };
-
-
-
-
-
 
     });
 

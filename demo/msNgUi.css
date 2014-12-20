@@ -198,8 +198,14 @@
   padding-top: 5px;
   position: relative;
 }
-.tree2 li .parent_li > span.leaf {
-  padding: 5px;
+.tree2 li > span.leaf {
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  border: 1px solid #999;
+  border-radius: 5px;
+  display: inline-block;
+  padding: 3px 8px;
+  text-decoration: none;
 }
 .tree2 li > span.leaf:hover {
   background-color: #f5f5f5;
@@ -207,4 +213,13 @@
 .tree2 li > span.selected {
   color: #ffffff;
   background-color: #0073b7 !important;
+}
+.tree3 {
+  list-style-type: none;
+}
+.tree3 ul {
+  list-style-type: none;
+  border-left: 1px solid;
+  margin: 0;
+  padding: 0;
 }
