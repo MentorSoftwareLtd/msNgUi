@@ -72,7 +72,6 @@ angular.module('ms.NgUi.tree',[])
                     })(scope.node);
 
                 scope.nodeClicked = function($event,node) {
-                    console.log(node);
 
                     scope.expanded=!scope.expanded;
                     if (node.type==options.fileType) {

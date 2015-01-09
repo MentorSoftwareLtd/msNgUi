@@ -1,5 +1,9 @@
 var TreeGridController = (function() {
-    var GridController = {};
+    var _treeGridController = {};
+    _treeGridController.prototype.readTableStructure = function() {
+
+    }
+    return _treeGridController;
 })();
 angular.module('ms.NgUi.treeGrid',[])
     .directive('msTreeGrid', function() {
